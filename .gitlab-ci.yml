@@ -1,6 +1,6 @@
 stages:
   - run
-  - verify
+  - test
 
 build-services:
   stage: run
@@ -18,27 +18,19 @@ build-services:
     - cd service
     - nohup mvn exec:java &  # Lancer le service part2 en arrière-plan
 
+    # Attendre un peu pour s'assurer que les services démarrent
+    - sleep 10
+run-cucumber-tests :
+  stage : test
+  script :
     # Étape 3 : Build de la partie 3
     - cd ../../mgl7230_tp3_part3
     - mvn clean install
 
-    # Attendre un peu pour s'assurer que les services démarrent
-    - sleep 20
-
+  
   artifacts:
     paths:
       - mgl7230_tp3_part1/service/target/
       - mgl7230_tp3_part2/service/target/
     expire_in: 1 hour
 
-verify-services:
-  stage: verify
-  image: curlimages/curl:latest  # Utilisation de l'image curl pour vérifier les ports
-  script:
-    # Vérification du service sur le port 8080 (part1)
-    - echo "Vérification du service sur le port 8080..."
-    - curl --silent --fail http://localhost:8080 || exit 1
-
-    # Vérification du service sur le port 8081 (part2)
-    - echo "Vérification du service sur le port 8081..."
-    - curl --silent --fail http://localhost:8081 || exit 1 
