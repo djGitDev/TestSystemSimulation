@@ -1,0 +1,17 @@
+stages:
+  - build
+
+
+build-services:
+  stage: build
+  image: maven:3.9.6-eclipse-temurin-21
+  script:
+    - cd mgl7230_tp3_part1
+    - mvn clean install 
+    - cd ../mgl7230_tp3_part2
+    - mvn clean install 
+  artifacts:
+    paths:
+      - mgl7230_tp3_part1/service/target/
+      - mgl7230_tp3_part2/service/target/
+    expire_in: 1 hour
