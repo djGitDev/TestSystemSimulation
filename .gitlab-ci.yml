@@ -9,9 +9,11 @@ build-services:
   script:
     - cd mgl7230_tp3_part1
     - mvn clean install 
+    - cd service
     - mvn exec:java
-    - cd ../mgl7230_tp3_part2
+    - cd ../../mgl7230_tp3_part2
     - mvn clean install 
+    - cd service
     - mvn exec:java
   artifacts:
     paths:
