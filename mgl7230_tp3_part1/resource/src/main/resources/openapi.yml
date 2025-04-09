@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: Simple API
+  version: 1.0.0
+paths:
+  /flight/frontend:
+    post:
+      summary: Receives data and saves flight
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                flightNumber:
+                  type: string
+                  description: Flight Number
+                passengerPassport:
+                  type: string
+                  description: Passenger Passport
+                passengerName:
+                  type: string
+                  description: Passenger Name
+                passengerAge:
+                  type: integer
+                  description: Passenger Age
+                passengerType:
+                  type: string
+                  description: Passenger Type (first class, business class, economy class)
+              required:
+                - flightNumber
+                - passengerPassport
+                - passengerName
+                - passengerAge
+                - passengerType
+            example:
+              flightNumber: "UQAM005"
+              PassengerPassport: "P1"
+              PassengerName: "N1"
+              PassengerAge: "1"
+              PassengerType: "first"
+      responses:
+        '201':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: flightId
