@@ -1,16 +1,18 @@
 stages:
-  - build
-  - start_services
+  - run
+  
 
 
 build-services:
-  stage: build
+  stage: run
   image: maven:3.9.6-eclipse-temurin-21
   script:
     - cd mgl7230_tp3_part1
     - mvn clean install 
+    - mvn exec:java
     - cd ../mgl7230_tp3_part2
     - mvn clean install 
+    - mvn exec:java
   artifacts:
     paths:
       - mgl7230_tp3_part1/service/target/
@@ -18,17 +20,5 @@ build-services:
     expire_in: 1 hour
 
 
-run-services:
-  stage: start_services
-  image: maven:3.9.6-eclipse-temurin-21
-  script:
-    - cd mgl7230_tp3_part1
-    - nohup mvn exec:java &
-    - cd ../mgl7230_tp3_part2
-    - nohup mvn exec:java &
-    - sleep 05
-  artifacts:
-    name: "services-logs"
-    paths:
-      - nohup.out
-  when: on_success    
+
+     
