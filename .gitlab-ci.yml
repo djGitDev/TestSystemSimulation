@@ -1,8 +1,8 @@
 stages:
   - run
-  - test
+ 
 
-build-services:
+build-test:
   stage: run
   image: maven:3.9.6-eclipse-temurin-21
   script:
@@ -20,9 +20,7 @@ build-services:
 
     # Attendre un peu pour s'assurer que les services démarrent
     - sleep 10
-run-cucumber-tests :
-  stage : test
-  script :
+
     # Étape 3 : Build de la partie 3
     - cd ../../mgl7230_tp3_part3
     - mvn clean install
