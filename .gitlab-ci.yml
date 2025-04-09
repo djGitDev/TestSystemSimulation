@@ -21,7 +21,7 @@ build-test:
     # Attendre un peu pour s'assurer que les services démarrent
     - sleep 10
 
-    # Étape 3 : Build de la partie 3
+    # Étape 3 : Build de la partie 3 et lancement des tests-systeme cucumber
     - cd ../../mgl7230_tp3_part3
     - mvn clean install
 
