@@ -13,6 +13,6 @@ public class HttpServerStarter {
         server.createContext("/flight/frontend", new FlightBookingController());
         server.setExecutor(null); // creates a default executor
         server.start();
-        System.out.println("Server started on port 8080");
+        System.out.println("Server started on port 8081");
     }
 }

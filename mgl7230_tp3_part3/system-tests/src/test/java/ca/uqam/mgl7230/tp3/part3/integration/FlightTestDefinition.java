@@ -76,4 +76,19 @@ public class FlightTestDefinition {
         List<String> actualList = Files.readAllLines(filePath);
         assertThat(actualList).isEqualTo(expectedValues);
     }
+
+    @Then("following data is not in the saved file")
+    public void followingDataIsNotInTheSavedFile(List<String> expectedValues) throws IOException {
+        String userDir = System.getProperty("user.dir");
+        Path filePath = Paths.get(userDir + "/../../mgl7230_tp3_part2/service/passengerData" + systemCallResult.getBody() + ".csv");
+        List<String> actualList = Files.readAllLines(filePath);
+        for (String line : expectedValues) {
+            assertThat(actualList).doesNotContain(line);
+        }
+    }
+    @Then("no saved file created")
+    public void noCreatedFileReturnedInResponse() throws IOException {
+            assertThat(systemCallResult).isNull();
+    }
+
 }
