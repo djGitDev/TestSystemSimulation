@@ -26,9 +26,5 @@ build-test:
     - mvn clean install
 
   
-  artifacts:
-    paths:
-      - mgl7230_tp3_part1/service/target/
-      - mgl7230_tp3_part2/service/target/
-    expire_in: 1 hour
+  
 
