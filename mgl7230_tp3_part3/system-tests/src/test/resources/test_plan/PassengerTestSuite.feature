@@ -1,6 +1,6 @@
 Feature: Test Suite to validate everything about passenger attributes (every scenario is a Test Case "TC")
 
-  Scenario: pass:suc:all:01 => Verify the possibility to add  passenger to the flight with a valid name, passport, age and class type
+  Scenario: pass:suc:01 => Verify the possibility to add  passenger to the flight with a valid name, passport, age and class type
     Given the following information
     """
     [
@@ -86,7 +86,7 @@ Feature: Test Suite to validate everything about passenger attributes (every sce
     Then response code is equal to 400
     And no saved file created
 
-  Scenario: pass:err:name:06 => Verify not add passenger with not valid age
+  Scenario: pass:err:age:06 => Verify not add passenger with not valid age
     Given the following information
     """
     [
@@ -103,7 +103,7 @@ Feature: Test Suite to validate everything about passenger attributes (every sce
     Then response code is equal to 400
     And no saved file created
 
-  Scenario: pass:err:name:07 => Verify not add passenger if age is not defined
+  Scenario: pass:err:age:07 => Verify not add passenger if age is not defined
     Given the following information
     """
     [
