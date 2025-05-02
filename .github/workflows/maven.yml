@@ -1,0 +1,38 @@
+name: build-test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    container:
+      image: maven:3.9.6-eclipse-temurin-21
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build and start service part1
+        working-directory: mgl7230_tp3_part1
+        run: |
+          mvn clean install
+          cd service
+          nohup mvn exec:java &
+
+      - name: Build and start service part2
+        working-directory: mgl7230_tp3_part2
+        run: |
+          mvn clean install
+          cd service
+          nohup mvn exec:java &
+
+      - name: Wait for services to start
+        run: sleep 10
+
+      - name: Build and run cucumber system tests (part3)
+        working-directory: mgl7230_tp3_part3
+        run: mvn clean install
